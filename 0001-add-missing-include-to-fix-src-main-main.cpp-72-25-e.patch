@@ -1,0 +1,22 @@
+From 46ae7240d5c2aa90e19ed5a22463f4cedcf09877 Mon Sep 17 00:00:00 2001
+From: Alexander Stefanov-Khryukin <alexander@mezon.ru>
+Date: Fri, 10 Feb 2017 12:14:42 +0000
+Subject: [PATCH] add missing include to fix "src/main/main.cpp:72:25: error:
+ member access into incomplete type 'QQmlContext'"
+
+
+diff --git a/src/main/main.cpp b/src/main/main.cpp
+index 58f3aba..b4a4a2d 100644
+--- a/src/main/main.cpp
++++ b/src/main/main.cpp
+@@ -25,6 +25,7 @@
+ #include <QGuiApplication>
+ #include <QQmlApplicationEngine>
+ #include <QtQuickControls2/QQuickStyle>
++#include <QQmlContext>
+ #include <QDebug>
+ 
+ #include "../core/models/tabsmodel.h"
+-- 
+2.8.3
+
