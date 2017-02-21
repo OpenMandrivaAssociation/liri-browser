@@ -11,7 +11,7 @@ Url:            https://github.com/lirios
 Source0:	liri-browser-%{version}-%{snapshot}.tar.xz
 Patch0:		0001-add-missing-include-to-fix-src-main-main.cpp-72-25-e.patch
 
-BuildRequires:  cmake
+BuildRequires:  cmake(ECM)
 BuildRequires:	slime-engine
 BuildRequires:	cmake(Fluid)
 BuildRequires:	qt5-qtwebengine-devel
@@ -25,13 +25,13 @@ A collection of core classes used throughout Liri
 
 # fix prefix
 sed -i 's!prefix = /usr/local!prefix = %{_prefix}!g' liri-browser.pro
+%qmake_qt5 CONFIG+=QTWEBENGINE_ENABLED
 
 %build
-%qmake_qt5 CONFIG+=QTWEBENGINE_ENABLED
-%make
+%ninja -C build
 
 %install
-%makeinstall_std INSTALL_ROOT="%{buildroot}"
+%ninja_install -C build
 
 %files
 %{_bindir}/%{name}
