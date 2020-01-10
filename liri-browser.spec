@@ -21,7 +21,7 @@ A collection of core classes used throughout Liri
 
 %prep
 %setup -qn %{name}-%{version}-%{snapshot}
-%apply_patches
+%autopatch -p1
 
 # fix prefix
 sed -i 's!prefix = /usr/local!prefix = %{_prefix}!g' liri-browser.pro
